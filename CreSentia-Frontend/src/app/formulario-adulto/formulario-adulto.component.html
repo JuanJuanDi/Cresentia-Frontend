@@ -1,0 +1,29 @@
+<p>formulario-adulto works!</p>
+
+<div class="form-container">
+  <h1>Empieza con tu nombre y tu mejor foto:</h1>
+  <div class="photo-upload">
+    <div class="photo-preview">
+      <img *ngIf="photo" [src]="photo" alt="Foto seleccionada">
+      <div *ngIf="!photo" class="placeholder-circle">
+        <img src="assets/path-to-camera-icon.png" class="camera-icon" alt="Icono de cámara">
+      </div>
+    </div>
+    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInput>
+    <button class="upload-button" (click)="fileInput.click()">Subir Foto</button>
+  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="nombre">Nombre y apellidos</label>
+      <input id="nombre" name="nombre" [(ngModel)]="nombre" required>
+    </div>
+    <div>
+      <label for="alias">¿Cómo te gusta que te llamen?</label>
+      <input id="alias" name="alias" [(ngModel)]="alias" required>
+    </div>
+    <button type="submit" [disabled]="!nombre || !alias">¡Listo!</button>
+  </form>
+  <p *ngIf="mensaje">{{ mensaje }}</p>
+</div>
+
+  
